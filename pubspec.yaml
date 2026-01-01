@@ -33,6 +33,7 @@ dependencies:
   dio: ^5.9.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
   get_it: ^9.2.0
 
 dev_dependencies:
