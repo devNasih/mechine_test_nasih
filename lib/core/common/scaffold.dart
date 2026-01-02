@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CommonScaffold extends StatelessWidget {
+class CustomScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final Widget? body;
   final Color? backgroundColor;
@@ -12,7 +12,7 @@ class CommonScaffold extends StatelessWidget {
   final bool showNoInternetPage;
   final bool? removeBottomSafeArea;
 
-  const CommonScaffold({
+  const CustomScaffold({
     super.key,
     this.appBar,
     this.body,

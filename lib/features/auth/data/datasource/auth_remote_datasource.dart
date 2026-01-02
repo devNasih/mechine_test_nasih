@@ -21,7 +21,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
       if (response.statusCode == 201 && response.data['accessToken'] != null) {
         return UserdataModel.fromJson(response.data);
       } else {
-        throw Exception('Failed to login');
+        throw Exception('Invalid credentials');
       }
     } catch (e) {
       debugPrint(e.toString());

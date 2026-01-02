@@ -6,7 +6,10 @@ import 'package:mechine_test_nasih/core/common/scaffold.dart';
 import 'package:mechine_test_nasih/core/common/snack_bar.dart';
 import 'package:mechine_test_nasih/core/common/textfield.dart';
 import 'package:mechine_test_nasih/core/helpers/navigation_helper.dart';
+import 'package:mechine_test_nasih/core/theme/color.dart';
 import 'package:mechine_test_nasih/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mechine_test_nasih/features/auth/presentation/widgets/forgot_password_link.dart';
+import 'package:mechine_test_nasih/features/auth/presentation/widgets/sign_up_button.dart';
 import 'package:mechine_test_nasih/features/home/presentation/pages/home.dart';
 
 class Login extends StatefulWidget {
@@ -30,7 +33,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return CommonScaffold(
+    return CustomScaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: _loginBody(context),
@@ -39,26 +42,23 @@ class _LoginState extends State<Login> {
   }
 
   Widget _loginBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Gap(height: MediaQuery.of(context).size.height * 0.08),
-          _buildHeader(),
-          Gap(height: 50),
-          _loginForm(),
-          Gap(height: 16),
-          _forgotPasswordLink(),
-          Gap(height: 32),
-          _loginButton(),
-          Gap(height: 24),
-          _buildDivider(),
-          Gap(height: 24),
-          _buildSignUpPrompt(context),
-          Gap(height: 40),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Gap(height: MediaQuery.of(context).size.height * 0.08),
+        _buildHeader(),
+        Gap(height: 50),
+        _loginForm(),
+        Gap(height: 16),
+        ForgotPasswordLink(),
+        Gap(height: 32),
+        _loginButton(),
+        Gap(height: 24),
+        _buildDivider(),
+        Gap(height: 24),
+        SignUpButton(),
+        Gap(height: 40),
+      ],
     );
   }
 
@@ -134,28 +134,6 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _forgotPasswordLink() {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: () {},
-        style: TextButton.styleFrom(
-          padding: EdgeInsets.zero,
-          minimumSize: const Size(0, 0),
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        ),
-        child: Text(
-          'Forgot Password?',
-          style: TextStyle(
-            color: Theme.of(context).primaryColor,
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _loginButton() {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
@@ -209,31 +187,6 @@ class _LoginState extends State<Login> {
         ),
         Expanded(child: Divider(color: Colors.grey[300])),
       ],
-    );
-  }
-
-  Widget _buildSignUpPrompt(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Don't have an account? ",
-            style: TextStyle(color: Colors.grey[600], fontSize: 14),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Text(
-              'Sign Up',
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

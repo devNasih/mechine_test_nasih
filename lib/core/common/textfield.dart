@@ -24,6 +24,7 @@ class CustomTextField extends StatefulWidget {
   final AutovalidateMode? autovalidateMode;
   final bool showTooltip;
   final String? tooltipMessage;
+  final Widget? suffix;
 
   const CustomTextField({
     super.key,
@@ -48,6 +49,7 @@ class CustomTextField extends StatefulWidget {
     this.autovalidateMode,
     this.showTooltip = false,
     this.tooltipMessage,
+    this.suffix,
   });
 
   @override
@@ -147,6 +149,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               autovalidateMode: widget.autovalidateMode,
               decoration: InputDecoration(
                 hintText: widget.hintText,
+                hintStyle: const TextStyle(color: Colors.grey),
                 border: InputBorder.none,
                 errorBorder: InputBorder.none,
                 focusedErrorBorder: InputBorder.none,
@@ -212,6 +215,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
             filled: true,
             fillColor: widget.isReadOnly ? Colors.grey[100] : AppColors.white,
             hintText: widget.hintText,
+            suffix: widget.suffix,
+            hintStyle: const TextStyle(color: Colors.grey),
             errorStyle: const TextStyle(height: 0, fontSize: 0),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 12,

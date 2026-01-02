@@ -16,6 +16,7 @@ class ButtonWidget extends StatelessWidget {
   final bool disabled;
   final double? textSize;
   EdgeInsetsGeometry? padding;
+  EdgeInsetsGeometry? margin;
 
   ButtonWidget({
     super.key,
@@ -32,6 +33,7 @@ class ButtonWidget extends StatelessWidget {
     this.disabled = false,
     this.textSize,
     this.padding,
+    this.margin,
   });
 
   @override
@@ -41,6 +43,7 @@ class ButtonWidget extends StatelessWidget {
     return Container(
       width: width,
       height: height ?? 43,
+      margin: margin,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
         boxShadow: !isDisabled && !outlined
