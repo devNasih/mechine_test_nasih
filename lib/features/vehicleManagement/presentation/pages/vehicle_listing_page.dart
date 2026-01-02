@@ -6,6 +6,7 @@ import 'package:mechine_test_nasih/core/common/loader.dart';
 import 'package:mechine_test_nasih/core/helpers/navigation_helper.dart';
 import 'package:mechine_test_nasih/features/vehicleManagement/presentation/bloc/vehicle_management_bloc.dart';
 import 'package:mechine_test_nasih/features/vehicleManagement/presentation/pages/add_edit_vehicle.dart';
+import 'package:mechine_test_nasih/features/vehicleManagement/presentation/widgets/delete_bottom_sheet.dart';
 import 'package:mechine_test_nasih/features/vehicleManagement/presentation/widgets/vehicle_card.dart';
 
 class VehicleListingPage extends StatefulWidget {
@@ -78,16 +79,23 @@ class _VehicleListingPageState extends State<VehicleListingPage> {
             state.vehicles.length + (state.isLoadingMore ? 1 : 0),
           padding: const EdgeInsets.only(bottom: 24),
           itemBuilder: (context, index) {
+
+
              if (index >= state.vehicles.length) {
             return  Padding(
               padding: EdgeInsets.all(16),
-              child: Loader(),
+              child: Loader()
             );
           }
+            final vehicleId = state.vehicles[index].id;
+            final vehicleName = state.vehicles[index].name;
             return VehicleCard(
               vehicle: state.vehicles[index],
               onEdit: () => NavigationService.goTo(context, AddEditVehicle(isEdit: true, vehicle: state.vehicles[index])),
-            );
+              onDelete:  () => DeleteBottomSheet.show(context, vehicleName: vehicleName ?? '', vehicleId: vehicleId ?? '', onDelete: () {
+                context.read<VehicleManagementBloc>().add(DeleteVehicleEvent(vehicleId ?? ""));
+              },
+            ));
           },
         );
       },

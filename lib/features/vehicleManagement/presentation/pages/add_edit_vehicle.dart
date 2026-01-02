@@ -122,68 +122,70 @@ class _AddEditVehicleState extends State<AddEditVehicle> {
   }
 
   Widget _buildForm() {
-    return Form(
-      key: formKey,
-      child: Column(
-        children: [
-          Gap(height: 14),
-          CustomTextField(
-            controller: _nameController,
-            isLabelEnabled: true,
-            isMandatory: true,
-            label: 'Vehicle Name',
-            hintText: "Enter Vehicle Name",
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Vehicle Name is required';
-              }
-              return null;
-            },
-          ),
-          Gap(height: 15),
-          CustomTextField(
-            controller: _modelController,
-            isLabelEnabled: true,
-            isMandatory: true,
-            label: 'Model',
-            hintText: "Enter Model",
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Model is required';
-              }
-              return null;
-            },
-          ),
-
-          Gap(height: 15),
-          CustomTextField(
-            controller: _colorController,
-            isLabelEnabled: true,
-            isMandatory: true,
-            label: 'Color',
-            hintText: "What color is your vehicle?",
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Color is required';
-              }
-              return null;
-            },
-          ),
-          Gap(height: 15),
-          CustomTextField(
-            controller: _registrationNumberController,
-            isLabelEnabled: true,
-            isMandatory: true,
-            label: 'Registration Number',
-            hintText: "Enter Registration Number",
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Registration Number is required';
-              }
-              return null;
-            },
-          ),
-        ],
+    return SingleChildScrollView(
+      child: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            Gap(height: 14),
+            CustomTextField(
+              controller: _nameController,
+              isLabelEnabled: true,
+              isMandatory: true,
+              label: 'Vehicle Name',
+              hintText: "Enter Vehicle Name",
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Vehicle Name is required';
+                }
+                return null;
+              },
+            ),
+            Gap(height: 15),
+            CustomTextField(
+              controller: _modelController,
+              isLabelEnabled: true,
+              isMandatory: true,
+              label: 'Model',
+              hintText: "Enter Model",
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Model is required';
+                }
+                return null;
+              },
+            ),
+      
+            Gap(height: 15),
+            CustomTextField(
+              controller: _colorController,
+              isLabelEnabled: true,
+              isMandatory: true,
+              label: 'Color',
+              hintText: "What color is your vehicle?",
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Color is required';
+                }
+                return null;
+              },
+            ),
+            Gap(height: 15),
+            CustomTextField(
+              controller: _registrationNumberController,
+              isLabelEnabled: true,
+              isMandatory: true,
+              label: 'Registration Number',
+              hintText: "Enter Registration Number",
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Registration Number is required';
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

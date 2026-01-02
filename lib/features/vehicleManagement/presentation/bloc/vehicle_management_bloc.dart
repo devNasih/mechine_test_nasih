@@ -114,14 +114,15 @@ Future<void> _updateVehicle(
 
   Future<void> _deleteVehicle(
       DeleteVehicleEvent event, Emitter<VehicleManagementState> emit) async {
+    emit(state.copyWith(errorMessage: null, status: CrudStatus.loading));
     try {
       await deleteVehicleUsecase(event.vehicleId);
       final updatedVehicles = state.vehicles
           .where((vehicle) => vehicle.id != event.vehicleId)
           .toList();
-      emit(state.copyWith(vehicles: updatedVehicles, skip: state.skip - 1));
+      emit(state.copyWith(vehicles: updatedVehicles, skip: state.skip - 1, status: CrudStatus.success));
     } catch (e) {
-      emit(state.copyWith(errorMessage: e.toString()));
+      emit(state.copyWith(errorMessage: e.toString(), status: CrudStatus.failure));
     }
   }
 }
